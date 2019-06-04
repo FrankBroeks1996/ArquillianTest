@@ -93,6 +93,9 @@
             <!-- The profile to execute wildfly managed integration tests.
             Other profiles similar to this could be created for other container adapters-->
             <id>wildfly-managed</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <!-- the dependencies for Wildfly  -->
             <dependencies>
                 <dependency>
