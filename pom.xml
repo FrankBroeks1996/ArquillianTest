@@ -10,7 +10,7 @@
 
     <properties>
         <version.arquillian>1.1.8.Final</version.arquillian>
-        <version.wildfly>14.0.1.Final</version.wildfly>
+        <version.wildfly>8.2.0.Final</version.wildfly>
     </properties>
 
     <dependencyManagement>
@@ -44,11 +44,6 @@
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>jboss-logging</artifactId>
-            <version>3.4.0.Final</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -77,7 +72,6 @@
         <profile>
             <!-- The profile to be used for regualr build lifecycle - compilation, package building, unit tests etc.
             The default profile doesn't execute integration tests-->
-            <id>default</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -87,7 +81,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.16</version>
                         <configuration>
-                            <skip>false</skip>
+                            <skip>true</skip>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -98,9 +92,6 @@
             <!-- The profile to execute wildfly managed integration tests.
             Other profiles similar to this could be created for other container adapters-->
             <id>wildfly-managed</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <!-- the dependencies for Wildfly  -->
             <dependencies>
                 <dependency>
@@ -112,12 +103,6 @@
                     <groupId>org.wildfly</groupId>
                     <artifactId>wildfly-embedded</artifactId>
                     <version>8.2.0.Final</version>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>sun.jdk</groupId>
-                            <artifactId>jconsole</artifactId>
-                        </exclusion>
-                    </exclusions>
                 </dependency>
             </dependencies>
 
